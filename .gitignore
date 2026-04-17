@@ -1,0 +1,24 @@
+# Build directories
+build/
+dist/
+*.spec
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+env/
+
+# Logs and local generated data
+session_log.txt
+transformed_hours_import.csv
+
+# Large/Sensitive Data files (Keep out of source control!)
+*.xlsx
+*.csv
+!hours-import (1).csv
+
+# Mac OS
+.DS_Store
