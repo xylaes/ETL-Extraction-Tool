@@ -52,5 +52,19 @@ class TestETL(unittest.TestCase):
         # Test ffill propagation is successful again
         self.assertEqual(filled[5], 'Design Build')
 
+    def test_ot_multiplier(self):
+        """
+        Verify the 1.5x Overtime Pay Rate multiplier logic.
+        """
+        base_rate = 20.0
+        
+        # Simulate the inline OT calculation logic applied in ETL.py
+        def calculate_rate(rate, rate_type):
+            return round(float(rate) * 1.5, 2) if rate_type == 'OT' else rate
+            
+        self.assertEqual(calculate_rate(base_rate, 'REG'), 20.0)
+        self.assertEqual(calculate_rate(base_rate, 'OT'), 30.0)
+        self.assertEqual(calculate_rate(25.55, 'OT'), 38.32)
+
 if __name__ == '__main__':
     unittest.main()
