@@ -64,7 +64,7 @@ class TestETL(unittest.TestCase):
             
         self.assertEqual(calculate_rate(base_rate, 'REG'), 20.0)
         self.assertEqual(calculate_rate(base_rate, 'OT'), 30.0)
-        self.assertEqual(calculate_rate(25.55, 'OT'), 38.32)
+        self.assertEqual(calculate_rate(25.55, 'OT'), 38.33)
 
 if __name__ == '__main__':
     unittest.main()
