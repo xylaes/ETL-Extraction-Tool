@@ -19,3 +19,22 @@ This application automates the conversion of the `ReportPivotGrid` Excel file in
 
 - If an error occurs, an entry is written into a `session_log.txt` file located in the same folder as `ETL.exe`.
 - If the output looks incorrect, ensure the Excel sheet matches the standard structure of the original `ReportPivotGrid`.
+
+## Developer Setup & Compilation
+
+If you are cloning this repository to build the executable yourself or modify the code, follow these steps:
+
+1. **Install Python**: Ensure you have Python installed on your system (Python 3.10+ recommended).
+2. **Install Dependencies**: Open your terminal in the project directory and run:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Run the App Locally**: You can test the application directly via Python:
+   ```bash
+   python ETL.py
+   ```
+4. **Compile the Executable**: To package the application into a standalone Windows `.exe` using PyInstaller, run:
+   ```bash
+   pyinstaller --noconsole --onefile ETL.py
+   ```
+   The finished executable will be generated inside the `dist/` directory.
