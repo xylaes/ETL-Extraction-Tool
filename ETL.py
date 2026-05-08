@@ -37,7 +37,7 @@ def transform_data(input_path):
         col_mapping = {}
         for i in range(2, len(source_raw.columns)):
             div, dt, ht = str(divisions[i]), str(dates[i]), str(hour_types[i])
-            if 'Total' in div or 'nan' in div or 'nan' in dt: continue
+            if 'Total' in div or div == 'nan' or dt == 'nan': continue
             
             rate_type = "REG" if "Regular" in ht else "OT" if "OT" in ht else None
             if rate_type:
@@ -68,10 +68,13 @@ def transform_data(input_path):
                         dt_obj = datetime.strptime(info['Date'], '%m/%d/%y')
                         fmt_date = f"{dt_obj.month}/{dt_obj.day}/{dt_obj.year % 100:02d}"
                         
+                        # Apply 1.5x multiplier to the Pay Rate if it is Overtime
+                        final_rate = round(float(rate) * 1.5, 2) if info['RateType'] == 'OT' else rate
+                        
                         records.append({
                             'Employee #': current_emp_id,
                             'Hours Worked Date': fmt_date,
-                            'Pay Rate': rate,
+                            'Pay Rate': final_rate,
                             'Rate Type (REG, OT, or DT)': info['RateType'],
                             'Hours Worked': hours_val,
                             'Project Name': info['Division'],
